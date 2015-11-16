@@ -1,20 +1,18 @@
+public class ValidaCpfModificado {
 
-public class ValidaCpfModificado{
-    
-   String cpf = "114.985.886-97";
-    char[] digitosCpfSemMask = new char[11];                           // cria um segundo array do  tipo char para poder realizar os cÃ¡lcos em os sinais de '.' e de '-'
+    String cpf = "114.985.886-97";
+    char[] digitosCpfSemMask = new char[11];                                                  // cria um segundo array do  tipo char para poder realizar os cÃ¡lcos em os sinais de '.' e de '-'
     char[] digitosCpf = cpf.toCharArray();
     int somatorio = 0;
     int restoDivisao;
     int peso = 10;
 
     public static void main(String args[]) {
-        
         ValidaCpfModificado validaCpfModificado = new ValidaCpfModificado();
         validaCpfModificado.manipulaArrays();
     }
 
-     public void manipulaArrays() {
+    public void manipulaArrays() {
         digitosCpfSemMask[0] = digitosCpf[0];
         digitosCpfSemMask[1] = digitosCpf[1];
         digitosCpfSemMask[2] = digitosCpf[2];
@@ -26,23 +24,23 @@ public class ValidaCpfModificado{
         digitosCpfSemMask[8] = digitosCpf[10];
         digitosCpfSemMask[9] = digitosCpf[12];
         digitosCpfSemMask[10] = digitosCpf[13];
-        this.ResultadoValidacao();
+        this.resultadoValidacao();
     }
 
-    public void ResultadoValidacao() {
-       System.out.print( this.comparacaoDeDigitosCalculados());
+    public void resultadoValidacao() {
+        System.out.print(this.compararDigitosCalculados());
     }
 
-    public String comparacaoDeDigitosCalculados() {
-        if (Integer.parseInt("" + digitosCpfSemMask[9]) == calculaPrimeiroDigitoVerificador()
-                && Integer.parseInt("" + digitosCpfSemMask[10]) == calculaSegundoDigitoVerificador()) {
+    public String compararDigitosCalculados() {
+        if (Integer.parseInt("" + digitosCpfSemMask[9]) == calcularPrimeiroDigitoVerificador()
+                && Integer.parseInt("" + digitosCpfSemMask[10]) == calcularSegundoDigitoVerificador()) {
             return ("Cpf Válido");
         } else {
             return ("Cpf Inválido");
         }
     }
 
-    public int calculaPrimeiroDigitoVerificador() {
+    public int calcularPrimeiroDigitoVerificador() {
         /////varaiveis auxiliares                
         int digitoVerificador1;
         peso = 10;
@@ -60,7 +58,7 @@ public class ValidaCpfModificado{
         }
     }
 
-    public int calculaSegundoDigitoVerificador() {
+    public int calcularSegundoDigitoVerificador() {
         peso = 11;                                                              // 'peso' passa a valer 11 para poder atender a regra, que diz para  o 2ÂºDV deve entrar no somatÃ³rio o 1ÂºDV encontrado anteriormente
         somatorio = 0;
         restoDivisao = 0;
